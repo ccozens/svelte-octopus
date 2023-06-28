@@ -5,7 +5,7 @@
 
     // render Example once the component mounts
     onMount(async() => {
-        chart = await import("../components/Chart.svelte");
+        chart = await import("../components/ApexChart.svelte");
     });
 </script>
 
