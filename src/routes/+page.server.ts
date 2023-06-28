@@ -53,12 +53,14 @@ interface Parameters {
     period_from: string;
     period_to: string;
     page_size: number;
+    order_by?: string;
 }
 
 const parameters: Parameters = {
     period_from: '2023-02-01T00:00:00Z', //start date
     period_to: '2023-02-28T00:00:00Z', //end date
     page_size: 1000, // page size of returned results
+    order_by: 'period', // order from oldest to newest
 };
 
 import { sample } from './sample'

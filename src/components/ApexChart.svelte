@@ -1,5 +1,41 @@
 <script lang="ts">
     import { chart } from "svelte-apexcharts";
+
+    import { reversedSample } from "../routes/sample";
+    interface Result {
+        consumption: number;
+        interval_start: string;
+        interval_end: string;
+    }
+
+    const { results } = reversedSample;
+
+    const elecConsumption = results.map((result: Result) => result.consumption);
+
+
+    function finalDates(results: Result[]) {
+        const intervalStartDates = results.map(
+            (result) => new Date(result.interval_start)
+        );
+
+        const formatOptions: Intl.DateTimeFormatOptions = {
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+        };
+
+        const formattedDates = intervalStartDates.map((date) =>
+            date.toLocaleDateString("en-GB", formatOptions)
+        );
+        const xAxisData = formattedDates.map((formattedDate) =>
+            formattedDate.toString()
+        );
+        return xAxisData;
+    }
+
+    const xAxisData = finalDates(results);
+
     let options = {
         chart: {
             type: "bar",
@@ -7,7 +43,7 @@
             //
             foreColor: "#60F0F8",
             height: 500,
-            width: 600,
+            width: "80%",
         },
         fill: {
             colors: ["hsl(183, 91%, 67%)"],
@@ -34,12 +70,11 @@
 
         series: [
             {
-                name: "sales",
-                data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+                data: elecConsumption,
             },
         ],
         xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+            categories: xAxisData,
         },
     };
 </script>

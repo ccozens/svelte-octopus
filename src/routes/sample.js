@@ -505,3 +505,15 @@ export const sample = {
       }
     ]
   };
+
+  function reverseResults(input) {
+    // Create a shallow copy of the input object
+    const output = { ...input };
+
+    // Reverse the results array
+    output.results = input.results.reverse();
+
+    return output;
+  }
+
+  export const reversedSample = reverseResults(sample);
