@@ -61,9 +61,11 @@ const parameters: Parameters = {
     page_size: 1000, // page size of returned results
 };
 
+import { sample } from './sample'
 
 export function load() {
-    const elecData = fetchFromOctopus(url_octopus_base + url_electricity, parameters);
+    const elecData = sample;
+    // const elecData = fetchFromOctopus(url_octopus_base + url_electricity, parameters);
     // const gasData = fetchFromOctopus(url_octopus_base + url_gas, parameters);
     // const productInfo = fetchFromOctopus(url_octopus_base + url_product_info)
     // const data = {elecData, gasData, productInfo}
